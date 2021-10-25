@@ -7,7 +7,7 @@ using Newtonsoft.Json;
 namespace Autransoft.Template.EntityFramework.Lib.Exceptions
 {
     [Serializable]
-    public class DbException : Exception
+    public class AutranSoftDbException : Exception
     {
         public string Query { get; set; }
         public string JsonEntity { get; set; }
@@ -16,25 +16,25 @@ namespace Autransoft.Template.EntityFramework.Lib.Exceptions
 
         public string Logging { get { return this.LogError(); } }
 
-        public DbException ConvertWithNewtonsoft()
+        public AutranSoftDbException ConvertWithNewtonsoft()
         {
             UseNewtonsoft = true;
             return this;
         }
 
-        public DbException(Exception exception, IQueryable<object> query) : base(exception.Message, exception)
+        public AutranSoftDbException(Exception exception, IQueryable<object> query) : base(exception.Message, exception)
         {
             Query = query?.ToQueryString();
             JsonEntity = null;
         }
 
-        public DbException(Exception exception, string query) : base(exception.Message, exception)
+        public AutranSoftDbException(Exception exception, string query) : base(exception.Message, exception)
         {
             Query = query;
             JsonEntity = null;
         }
 
-        public DbException(Exception exception, object entity) : base(exception.Message, exception)
+        public AutranSoftDbException(Exception exception, object entity) : base(exception.Message, exception)
         {
             Query = null;
 

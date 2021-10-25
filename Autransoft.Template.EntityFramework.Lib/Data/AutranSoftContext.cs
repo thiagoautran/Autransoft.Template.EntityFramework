@@ -7,11 +7,11 @@ using Microsoft.Extensions.Options;
 
 namespace Autransoft.Template.EntityFramework.Lib.Data
 {
-    public class AutransoftContext : DbContext, IAutransoftContext
+    public class AutranSoftContext : DbContext, IAutranSoftContext
     {
         private readonly PosgreSQL _posgreSQL;
 
-        public AutransoftContext(IOptions<AutransoftDatabase> database) => _posgreSQL = database?.Value?.PosgreSQL;
+        public AutranSoftContext(IOptions<Autransoft.Template.EntityFramework.Lib.DTOs.Autransoft> autransoftAppSettings) => _posgreSQL = autransoftAppSettings?.Value?.Database?.PosgreSQL;
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -33,7 +33,12 @@ namespace Autransoft.Template.EntityFramework.Lib.Data
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
-            builder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
+
+            foreach(var assembly in AppDomain.CurrentDomain.GetAssemblies())
+            {
+                Console.WriteLine(assembly.FullName);
+                builder.ApplyConfigurationsFromAssembly(assembly);
+            }
         }
 
         private string GetConnectionString() =>

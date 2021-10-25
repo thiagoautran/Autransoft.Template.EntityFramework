@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 
 namespace Autransoft.Template.EntityFramework.Lib.Interfaces
 {
-    public interface IAutransoftContext
+    public interface IAutranSoftContext
     {
         ChangeTracker ChangeTracker { get; }
         DatabaseFacade Database { get; }

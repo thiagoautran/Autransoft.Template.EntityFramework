@@ -3,8 +3,8 @@ using Autransoft.Template.EntityFramework.Lib.Entities;
 
 namespace Autransoft.Template.EntityFramework.Lib.Interfaces
 {
-    public interface IAutransoftBaseRepository<Entity>
-        where Entity : BaseEntity
+    public interface IAutranSoftBaseRepository<Entity>
+        where Entity : AutranSoftBaseEntity
     {
         Task<Entity> AddAsync(Entity entity);
 

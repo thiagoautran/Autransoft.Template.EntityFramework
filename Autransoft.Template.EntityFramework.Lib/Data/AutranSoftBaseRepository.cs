@@ -8,12 +8,12 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Autransoft.Template.EntityFramework.Lib.Data
 {
-    public class AutransoftBaseRepository<Entity> : IAutransoftBaseRepository<Entity>
-        where Entity : BaseEntity
+    public class AutranSoftBaseRepository<Entity> : IAutranSoftBaseRepository<Entity>
+        where Entity : AutranSoftBaseEntity
     {
-        protected readonly IAutransoftContext _dbContext;
+        protected readonly IAutranSoftContext _dbContext;
 
-        public AutransoftBaseRepository(IAutransoftContext dbContext) => _dbContext = dbContext;
+        public AutranSoftBaseRepository(IAutranSoftContext dbContext) => _dbContext = dbContext;
 
         public async Task<Entity> AddAsync(Entity entity)
         {
@@ -24,7 +24,7 @@ namespace Autransoft.Template.EntityFramework.Lib.Data
             }
             catch(Exception ex)
             {
-                new DbException(ex, entity);
+                new AutranSoftDbException(ex, entity);
             }
 
             return entity;
@@ -39,7 +39,7 @@ namespace Autransoft.Template.EntityFramework.Lib.Data
             }
             catch(Exception ex)
             {
-                new DbException(ex, entity);
+                new AutranSoftDbException(ex, entity);
             }
         }
 
@@ -52,7 +52,7 @@ namespace Autransoft.Template.EntityFramework.Lib.Data
             }
             catch(Exception ex)
             {
-                new DbException(ex, entity);
+                new AutranSoftDbException(ex, entity);
             }
         }
 
@@ -65,7 +65,7 @@ namespace Autransoft.Template.EntityFramework.Lib.Data
             }
             catch(Exception ex)
             {
-                new DbException(ex, entities);
+                new AutranSoftDbException(ex, entities);
             }
         }
 
@@ -77,7 +77,7 @@ namespace Autransoft.Template.EntityFramework.Lib.Data
             }
             catch(Exception ex)
             {
-                new DbException(ex, $"DELETE FROM {tableName};");
+                new AutranSoftDbException(ex, $"DELETE FROM {tableName};");
             }
         }
     }

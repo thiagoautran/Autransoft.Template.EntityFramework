@@ -1,6 +1,6 @@
 namespace Autransoft.Template.EntityFramework.Lib.DTOs
 {
-    public class AutransoftDatabase
+    public class Database
     {
         public PosgreSQL PosgreSQL { get; set; }
     }
