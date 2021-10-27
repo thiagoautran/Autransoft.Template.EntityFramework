@@ -33,6 +33,12 @@ namespace Autransoft.Template.EntityFramework.Lib.Exceptions
             JsonEntity = null;
         }
 
+        public AutranSoftEfException(Exception exception) : base(exception.Message, exception)
+        {
+            Query = null;
+            JsonEntity = null;
+        }
+
         public AutranSoftEfException(Exception exception, object entity) : base(exception.Message, exception)
         {
             Query = null;
