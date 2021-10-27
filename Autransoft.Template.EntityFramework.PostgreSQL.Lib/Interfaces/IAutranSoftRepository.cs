@@ -3,8 +3,8 @@ using Autransoft.Template.EntityFramework.PostgreSQL.Lib.Entities;
 
 namespace Autransoft.Template.EntityFramework.PostgreSQL.Lib.Interfaces
 {
-    public interface IAutranSoftBaseRepository<Entity>
-        where Entity : AutranSoftBaseEntity
+    public interface IAutranSoftRepository<Entity>
+        where Entity : AutranSoftEntity
     {
         Task<Entity> AddAsync(Entity entity);
 

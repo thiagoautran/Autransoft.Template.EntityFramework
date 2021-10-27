@@ -8,12 +8,12 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Autransoft.Template.EntityFramework.PostgreSQL.Lib.Data
 {
-    public class AutranSoftBaseRepository<Entity> : IAutranSoftBaseRepository<Entity>
-        where Entity : AutranSoftBaseEntity
+    public class AutranSoftRepository<Entity> : IAutranSoftRepository<Entity>
+        where Entity : AutranSoftEntity
     {
         protected readonly IAutranSoftContext _dbContext;
 
-        public AutranSoftBaseRepository(IAutranSoftContext dbContext) => _dbContext = dbContext;
+        public AutranSoftRepository(IAutranSoftContext dbContext) => _dbContext = dbContext;
 
         public async Task<Entity> AddAsync(Entity entity)
         {
@@ -24,7 +24,7 @@ namespace Autransoft.Template.EntityFramework.PostgreSQL.Lib.Data
             }
             catch(Exception ex)
             {
-                new AutranSoftEntityFrameworkException(ex, entity);
+                new AutranSoftEfException(ex, entity);
             }
 
             return entity;
@@ -39,7 +39,7 @@ namespace Autransoft.Template.EntityFramework.PostgreSQL.Lib.Data
             }
             catch(Exception ex)
             {
-                new AutranSoftEntityFrameworkException(ex, entity);
+                new AutranSoftEfException(ex, entity);
             }
         }
 
@@ -52,7 +52,7 @@ namespace Autransoft.Template.EntityFramework.PostgreSQL.Lib.Data
             }
             catch(Exception ex)
             {
-                new AutranSoftEntityFrameworkException(ex, entity);
+                new AutranSoftEfException(ex, entity);
             }
         }
 
@@ -65,7 +65,7 @@ namespace Autransoft.Template.EntityFramework.PostgreSQL.Lib.Data
             }
             catch(Exception ex)
             {
-                new AutranSoftEntityFrameworkException(ex, entities);
+                new AutranSoftEfException(ex, entities);
             }
         }
 
@@ -77,7 +77,7 @@ namespace Autransoft.Template.EntityFramework.PostgreSQL.Lib.Data
             }
             catch(Exception ex)
             {
-                new AutranSoftEntityFrameworkException(ex, $"DELETE FROM {tableName};");
+                new AutranSoftEfException(ex, $"DELETE FROM {tableName};");
             }
         }
     }

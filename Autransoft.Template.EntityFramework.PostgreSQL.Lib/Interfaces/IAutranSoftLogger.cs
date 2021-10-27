@@ -2,9 +2,9 @@ using Autransoft.Template.EntityFramework.PostgreSQL.Lib.Exceptions;
 
 namespace Autransoft.Template.EntityFramework.PostgreSQL.Lib.Interfaces
 {
-    public interface IAutranSoftEntityFrameworkLogger<Repository>
+    public interface IAutranSoftLogger<Repository>
         where Repository : class
     {
-        void Error(AutranSoftEntityFrameworkException ex);
+        void Error(AutranSoftEfException autranSoftEfException);
     }
 }

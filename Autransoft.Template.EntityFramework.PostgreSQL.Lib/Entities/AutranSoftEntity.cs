@@ -1,6 +1,6 @@
 namespace Autransoft.Template.EntityFramework.PostgreSQL.Lib.Entities
 {
-    public class AutranSoftBaseEntity
+    public class AutranSoftEntity
     {
     }
 }

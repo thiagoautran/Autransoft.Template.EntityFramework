@@ -7,7 +7,7 @@ using Newtonsoft.Json;
 namespace Autransoft.Template.EntityFramework.PostgreSQL.Lib.Exceptions
 {
     [Serializable]
-    public class AutranSoftEntityFrameworkException : Exception
+    public class AutranSoftEfException : Exception
     {
         public string Query { get; set; }
         public string JsonEntity { get; set; }
@@ -16,25 +16,25 @@ namespace Autransoft.Template.EntityFramework.PostgreSQL.Lib.Exceptions
 
         public string Logging { get { return this.LogError(); } }
 
-        public AutranSoftEntityFrameworkException ConvertWithNewtonsoft()
+        public AutranSoftEfException ConvertWithNewtonsoft()
         {
             UseNewtonsoft = true;
             return this;
         }
 
-        public AutranSoftEntityFrameworkException(Exception exception, IQueryable<object> query) : base(exception.Message, exception)
+        public AutranSoftEfException(Exception exception, IQueryable<object> query) : base(exception.Message, exception)
         {
             Query = query?.ToQueryString();
             JsonEntity = null;
         }
 
-        public AutranSoftEntityFrameworkException(Exception exception, string query) : base(exception.Message, exception)
+        public AutranSoftEfException(Exception exception, string query) : base(exception.Message, exception)
         {
             Query = query;
             JsonEntity = null;
         }
 
-        public AutranSoftEntityFrameworkException(Exception exception, object entity) : base(exception.Message, exception)
+        public AutranSoftEfException(Exception exception, object entity) : base(exception.Message, exception)
         {
             Query = null;
 
