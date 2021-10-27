@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Metadata;
 
 namespace Autransoft.Template.EntityFramework.Lib.Interfaces
 {
-    public interface IAutranSoftContext
+    public interface IAutranSoftEfContext
     {
         DbContextId ContextId { get; }
         IModel Model { get; }

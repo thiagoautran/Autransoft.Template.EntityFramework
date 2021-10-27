@@ -8,14 +8,14 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Autransoft.Template.EntityFramework.Lib.Data
 {
-    public class AutranSoftRepositoryWithLogging<Entity, Repository> : IAutranSoftRepository<Entity>
+    public class AutranSoftEfRepositoryWithLogging<Entity, Repository> : IAutranSoftEfRepository<Entity>
         where Entity : AutranSoftEntity
         where Repository : class
     {
-        protected readonly IAutranSoftLogger<Repository> _logger;
-        protected readonly IAutranSoftContext _dbContext;
+        protected readonly IAutranSoftEfLogger<Repository> _logger;
+        protected readonly IAutranSoftEfContext _dbContext;
 
-        public AutranSoftRepositoryWithLogging(IAutranSoftLogger<Repository> logger, IAutranSoftContext dbContext)
+        public AutranSoftEfRepositoryWithLogging(IAutranSoftEfLogger<Repository> logger, IAutranSoftEfContext dbContext)
         {
             _dbContext = dbContext;
             _logger = logger;
@@ -30,7 +30,7 @@ namespace Autransoft.Template.EntityFramework.Lib.Data
             }
             catch(Exception ex)
             {
-                _logger.Error(new AutranSoftEfException(ex, entity));
+                _logger.LogError(new AutranSoftEfException(ex, entity));
             }
 
             return entity;
@@ -45,7 +45,7 @@ namespace Autransoft.Template.EntityFramework.Lib.Data
             }
             catch(Exception ex)
             {
-                _logger.Error(new AutranSoftEfException(ex, entity));
+                _logger.LogError(new AutranSoftEfException(ex, entity));
             }
         }
 
@@ -58,7 +58,7 @@ namespace Autransoft.Template.EntityFramework.Lib.Data
             }
             catch(Exception ex)
             {
-                _logger.Error(new AutranSoftEfException(ex, entity));
+                _logger.LogError(new AutranSoftEfException(ex, entity));
             }
         }
 
@@ -71,7 +71,7 @@ namespace Autransoft.Template.EntityFramework.Lib.Data
             }
             catch(Exception ex)
             {
-                _logger.Error(new AutranSoftEfException(ex, entities));
+                _logger.LogError(new AutranSoftEfException(ex, entities));
             }
         }
 
@@ -83,7 +83,7 @@ namespace Autransoft.Template.EntityFramework.Lib.Data
             }
             catch(Exception ex)
             {
-                _logger.Error(new AutranSoftEfException(ex, $"DELETE FROM {tableName};"));
+                _logger.LogError(new AutranSoftEfException(ex, $"DELETE FROM {tableName};"));
             }
         }
     }

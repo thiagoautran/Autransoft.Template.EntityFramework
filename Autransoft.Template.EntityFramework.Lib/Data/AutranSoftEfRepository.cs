@@ -8,12 +8,12 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Autransoft.Template.EntityFramework.Lib.Data
 {
-    public class AutranSoftRepository<Entity> : IAutranSoftRepository<Entity>
+    public class AutranSoftEfRepository<Entity> : IAutranSoftEfRepository<Entity>
         where Entity : AutranSoftEntity
     {
-        protected readonly IAutranSoftContext _dbContext;
+        protected readonly IAutranSoftEfContext _dbContext;
 
-        public AutranSoftRepository(IAutranSoftContext dbContext) => _dbContext = dbContext;
+        public AutranSoftEfRepository(IAutranSoftEfContext dbContext) => _dbContext = dbContext;
 
         public async Task<Entity> AddAsync(Entity entity)
         {
