@@ -4,9 +4,9 @@ namespace Autransoft.Template.EntityFramework.Lib.Loggings
 {
     internal static class DBExceptionLoggging
     {
-        public static string LogError(this AutranSoftDbException ex)
+        public static string LogError(this AutranSoftEntityFrameworkException ex)
         {
-            var log = Logging.GetErrorHeader(typeof(AutranSoftDbException));
+            var log = Logging.GetErrorHeader(typeof(AutranSoftEntityFrameworkException));
 
             if(!string.IsNullOrEmpty(ex.Query))
                 log.Append($"Query:{ex.Query}|");
