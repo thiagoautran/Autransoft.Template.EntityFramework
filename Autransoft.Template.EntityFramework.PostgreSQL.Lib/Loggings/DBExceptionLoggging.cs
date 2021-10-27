@@ -1,6 +1,6 @@
-using Autransoft.Template.EntityFramework.Lib.Exceptions;
+using Autransoft.Template.EntityFramework.PostgreSQL.Lib.Exceptions;
 
-namespace Autransoft.Template.EntityFramework.Lib.Loggings
+namespace Autransoft.Template.EntityFramework.PostgreSQL.Lib.Loggings
 {
     internal static class DBExceptionLoggging
     {

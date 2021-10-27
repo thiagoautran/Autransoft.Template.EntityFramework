@@ -1,10 +1,10 @@
 using System;
 using System.Linq;
-using Autransoft.Template.EntityFramework.Lib.Loggings;
+using Autransoft.Template.EntityFramework.PostgreSQL.Lib.Loggings;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
 
-namespace Autransoft.Template.EntityFramework.Lib.Exceptions
+namespace Autransoft.Template.EntityFramework.PostgreSQL.Lib.Exceptions
 {
     [Serializable]
     public class AutranSoftEntityFrameworkException : Exception

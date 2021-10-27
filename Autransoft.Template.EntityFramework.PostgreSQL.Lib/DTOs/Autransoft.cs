@@ -1,4 +1,4 @@
-namespace Autransoft.Template.EntityFramework.Lib.DTOs
+namespace Autransoft.Template.EntityFramework.PostgreSQL.Lib.DTOs
 {
     public class Autransoft
     {

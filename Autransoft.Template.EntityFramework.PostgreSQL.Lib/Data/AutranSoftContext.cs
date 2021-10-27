@@ -1,16 +1,16 @@
 using System;
-using Autransoft.Template.EntityFramework.Lib.DTOs;
-using Autransoft.Template.EntityFramework.Lib.Interfaces;
+using Autransoft.Template.EntityFramework.PostgreSQL.Lib.DTOs;
+using Autransoft.Template.EntityFramework.PostgreSQL.Lib.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 
-namespace Autransoft.Template.EntityFramework.Lib.Data
+namespace Autransoft.Template.EntityFramework.PostgreSQL.Lib.Data
 {
     public class AutranSoftContext : DbContext, IAutranSoftContext
     {
         private readonly PosgreSQL _posgreSQL;
 
-        public AutranSoftContext(IOptions<Autransoft.Template.EntityFramework.Lib.DTOs.Autransoft> autransoftAppSettings) => _posgreSQL = autransoftAppSettings?.Value?.Database?.PosgreSQL;
+        public AutranSoftContext(IOptions<Autransoft.Template.EntityFramework.PostgreSQL.Lib.DTOs.Autransoft> autransoftAppSettings) => _posgreSQL = autransoftAppSettings?.Value?.Database?.PosgreSQL;
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

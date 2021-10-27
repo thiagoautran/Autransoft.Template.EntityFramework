@@ -1,12 +1,12 @@
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using Autransoft.Template.EntityFramework.Lib.Entities;
-using Autransoft.Template.EntityFramework.Lib.Exceptions;
-using Autransoft.Template.EntityFramework.Lib.Interfaces;
+using Autransoft.Template.EntityFramework.PostgreSQL.Lib.Entities;
+using Autransoft.Template.EntityFramework.PostgreSQL.Lib.Exceptions;
+using Autransoft.Template.EntityFramework.PostgreSQL.Lib.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
-namespace Autransoft.Template.EntityFramework.Lib.Data
+namespace Autransoft.Template.EntityFramework.PostgreSQL.Lib.Data
 {
     public class AutranSoftBaseRepository<Entity> : IAutranSoftBaseRepository<Entity>
         where Entity : AutranSoftBaseEntity
