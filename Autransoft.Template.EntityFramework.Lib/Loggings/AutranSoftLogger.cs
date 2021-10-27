@@ -1,8 +1,8 @@
-using Autransoft.Template.EntityFramework.PostgreSQL.Lib.Exceptions;
-using Autransoft.Template.EntityFramework.PostgreSQL.Lib.Interfaces;
+using Autransoft.Template.EntityFramework.Lib.Exceptions;
+using Autransoft.Template.EntityFramework.Lib.Interfaces;
 using Microsoft.Extensions.Logging;
 
-namespace Autransoft.Template.EntityFramework.PostgreSQL.Lib.Loggings
+namespace Autransoft.Template.EntityFramework.Lib.Loggings
 {
     public class AutranSoftLogger<Repository> : IAutranSoftLogger<Repository>
         where Repository : class
@@ -11,6 +11,6 @@ namespace Autransoft.Template.EntityFramework.PostgreSQL.Lib.Loggings
 
         public AutranSoftLogger(ILoggerFactory loggerFactory) => (_logger) = (loggerFactory.CreateLogger<Repository>());
 
-        public void Error(AutranSoftEfException autranSoftEfException) => autranSoftEfException.LogError();
+        public void Error(AutranSoftEfException autranSoftEfException) => _logger.LogError(autranSoftEfException.LogError());
     }
 }

@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.ChangeTracking;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 
-namespace Autransoft.Template.EntityFramework.PostgreSQL.Lib.Interfaces
+namespace Autransoft.Template.EntityFramework.Lib.Interfaces
 {
     public interface IAutranSoftContext
     {

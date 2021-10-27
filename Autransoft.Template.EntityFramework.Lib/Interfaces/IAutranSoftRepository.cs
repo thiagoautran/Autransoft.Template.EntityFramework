@@ -1,7 +1,7 @@
 using System.Threading.Tasks;
-using Autransoft.Template.EntityFramework.PostgreSQL.Lib.Entities;
+using Autransoft.Template.EntityFramework.Lib.Entities;
 
-namespace Autransoft.Template.EntityFramework.PostgreSQL.Lib.Interfaces
+namespace Autransoft.Template.EntityFramework.Lib.Interfaces
 {
     public interface IAutranSoftRepository<Entity>
         where Entity : AutranSoftEntity
@@ -9,7 +9,5 @@ namespace Autransoft.Template.EntityFramework.PostgreSQL.Lib.Interfaces
         Task<Entity> AddAsync(Entity entity);
 
         Task UpdateAsync(Entity entity);
-
-        Task DeleteTableAsync(string tableName);
     }
 }

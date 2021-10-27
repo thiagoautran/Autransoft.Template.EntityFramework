@@ -1,7 +1,7 @@
 using System;
 using System.Text;
 
-namespace Autransoft.Template.EntityFramework.PostgreSQL.Lib.Loggings
+namespace Autransoft.Template.EntityFramework.Lib.Loggings
 {
     internal static class Logging
     {

@@ -1,19 +1,25 @@
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using Autransoft.Template.EntityFramework.PostgreSQL.Lib.Entities;
-using Autransoft.Template.EntityFramework.PostgreSQL.Lib.Exceptions;
-using Autransoft.Template.EntityFramework.PostgreSQL.Lib.Interfaces;
+using Autransoft.Template.EntityFramework.Lib.Entities;
+using Autransoft.Template.EntityFramework.Lib.Exceptions;
+using Autransoft.Template.EntityFramework.Lib.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
-namespace Autransoft.Template.EntityFramework.PostgreSQL.Lib.Data
+namespace Autransoft.Template.EntityFramework.Lib.Data
 {
-    public class AutranSoftRepository<Entity> : IAutranSoftRepository<Entity>
+    public class AutranSoftRepositoryWithLogging<Entity, Repository> : IAutranSoftRepository<Entity>
         where Entity : AutranSoftEntity
+        where Repository : class
     {
+        protected readonly IAutranSoftLogger<Repository> _logger;
         protected readonly IAutranSoftContext _dbContext;
 
-        public AutranSoftRepository(IAutranSoftContext dbContext) => _dbContext = dbContext;
+        public AutranSoftRepositoryWithLogging(IAutranSoftLogger<Repository> logger, IAutranSoftContext dbContext)
+        {
+            _dbContext = dbContext;
+            _logger = logger;
+        } 
 
         public async Task<Entity> AddAsync(Entity entity)
         {
@@ -24,7 +30,7 @@ namespace Autransoft.Template.EntityFramework.PostgreSQL.Lib.Data
             }
             catch(Exception ex)
             {
-                new AutranSoftEfException(ex, entity);
+                _logger.Error(new AutranSoftEfException(ex, entity));
             }
 
             return entity;
@@ -39,7 +45,7 @@ namespace Autransoft.Template.EntityFramework.PostgreSQL.Lib.Data
             }
             catch(Exception ex)
             {
-                new AutranSoftEfException(ex, entity);
+                _logger.Error(new AutranSoftEfException(ex, entity));
             }
         }
 
@@ -52,7 +58,7 @@ namespace Autransoft.Template.EntityFramework.PostgreSQL.Lib.Data
             }
             catch(Exception ex)
             {
-                new AutranSoftEfException(ex, entity);
+                _logger.Error(new AutranSoftEfException(ex, entity));
             }
         }
 
@@ -65,7 +71,7 @@ namespace Autransoft.Template.EntityFramework.PostgreSQL.Lib.Data
             }
             catch(Exception ex)
             {
-                new AutranSoftEfException(ex, entities);
+                _logger.Error(new AutranSoftEfException(ex, entities));
             }
         }
 
@@ -77,7 +83,7 @@ namespace Autransoft.Template.EntityFramework.PostgreSQL.Lib.Data
             }
             catch(Exception ex)
             {
-                new AutranSoftEfException(ex, $"DELETE FROM {tableName};");
+                _logger.Error(new AutranSoftEfException(ex, $"DELETE FROM {tableName};"));
             }
         }
     }

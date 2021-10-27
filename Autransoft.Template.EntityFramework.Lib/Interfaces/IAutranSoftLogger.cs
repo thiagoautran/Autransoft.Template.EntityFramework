@@ -1,6 +1,6 @@
-using Autransoft.Template.EntityFramework.PostgreSQL.Lib.Exceptions;
+using Autransoft.Template.EntityFramework.Lib.Exceptions;
 
-namespace Autransoft.Template.EntityFramework.PostgreSQL.Lib.Interfaces
+namespace Autransoft.Template.EntityFramework.Lib.Interfaces
 {
     public interface IAutranSoftLogger<Repository>
         where Repository : class

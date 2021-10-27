@@ -1,10 +1,9 @@
 using System;
 using System.Linq;
-using Autransoft.Template.EntityFramework.PostgreSQL.Lib.Loggings;
+using Autransoft.Template.EntityFramework.Lib.Loggings;
 using Microsoft.EntityFrameworkCore;
-using Newtonsoft.Json;
 
-namespace Autransoft.Template.EntityFramework.PostgreSQL.Lib.Exceptions
+namespace Autransoft.Template.EntityFramework.Lib.Exceptions
 {
     [Serializable]
     public class AutranSoftEfException : Exception
@@ -14,7 +13,7 @@ namespace Autransoft.Template.EntityFramework.PostgreSQL.Lib.Exceptions
 
         internal bool? UseNewtonsoft { get; private set; }
 
-        public string Logging { get { return this.LogError(); } }
+        public string LogError { get { return this.LogError(); } }
 
         public AutranSoftEfException ConvertWithNewtonsoft()
         {
@@ -37,11 +36,7 @@ namespace Autransoft.Template.EntityFramework.PostgreSQL.Lib.Exceptions
         public AutranSoftEfException(Exception exception, object entity) : base(exception.Message, exception)
         {
             Query = null;
-
-            if(UseNewtonsoft != null && UseNewtonsoft.Value)
-                JsonEntity = JsonConvert.SerializeObject(entity);
-            else
-                JsonEntity = System.Text.Json.JsonSerializer.Serialize(entity);
+            JsonEntity = System.Text.Json.JsonSerializer.Serialize(entity);
         }
     }
 }
