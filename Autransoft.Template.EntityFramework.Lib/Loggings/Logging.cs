@@ -14,12 +14,13 @@ namespace Autransoft.Template.EntityFramework.Lib.Loggings
             return log;
         }
 
-        public static StringBuilder GetErrorHeader(Type type)
+        public static StringBuilder GetErrorHeader(Type exception, Type repository)
         {
             var log = new StringBuilder();
 
             log.Append($"Type:Error|");
-            log.Append($"Exception:{type.Name}|");
+            log.Append($"Exception:{exception.Name}|");
+            log.Append($"Class:{repository.Name}|");
 
             return log;
         }

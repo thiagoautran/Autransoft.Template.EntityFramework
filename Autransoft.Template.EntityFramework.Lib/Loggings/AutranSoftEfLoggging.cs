@@ -4,9 +4,10 @@ namespace Autransoft.Template.EntityFramework.Lib.Loggings
 {
     internal static class AutranSoftEfLoggging
     {
-        public static string LogError(this AutranSoftEfException ex)
+        public static string Error<Repository>(this AutranSoftEfException ex)
+            where Repository : class
         {
-            var log = Logging.GetErrorHeader(typeof(AutranSoftEfException));
+            var log = Logging.GetErrorHeader(typeof(AutranSoftEfException), typeof(Repository));
 
             if(!string.IsNullOrEmpty(ex.Query))
                 log.Append($"Query:{ex.Query}|");

@@ -11,6 +11,6 @@ namespace Autransoft.Template.EntityFramework.Lib.Loggings
 
         public AutranSoftEfLogger(ILoggerFactory loggerFactory) => (_logger) = (loggerFactory.CreateLogger<Repository>());
 
-        public void LogError(AutranSoftEfException autranSoftEfException) => _logger.LogError(autranSoftEfException.LogError());
+        public void LogError(AutranSoftEfException autranSoftEfException) => _logger.LogError(autranSoftEfException.LogError<Repository>());
     }
 }

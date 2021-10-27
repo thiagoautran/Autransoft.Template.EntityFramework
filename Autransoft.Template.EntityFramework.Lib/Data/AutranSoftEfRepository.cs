@@ -8,12 +8,18 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Autransoft.Template.EntityFramework.Lib.Data
 {
-    public class AutranSoftEfRepository<Entity> : IAutranSoftEfRepository<Entity>
+    public class AutranSoftEfRepository<Entity, Repository> : IAutranSoftEfRepository<Entity>
         where Entity : AutranSoftEntity
+        where Repository : class
     {
+        protected readonly IAutranSoftEfLogger<Repository> _logger;
         protected readonly IAutranSoftEfContext _dbContext;
 
-        public AutranSoftEfRepository(IAutranSoftEfContext dbContext) => _dbContext = dbContext;
+        public AutranSoftEfRepository(IAutranSoftEfLogger<Repository> logger, IAutranSoftEfContext dbContext)
+        {
+            _dbContext = dbContext;
+            _logger = logger;
+        } 
 
         public async Task<Entity> AddAsync(Entity entity)
         {
@@ -24,7 +30,7 @@ namespace Autransoft.Template.EntityFramework.Lib.Data
             }
             catch(Exception ex)
             {
-                new AutranSoftEfException(ex, entity);
+                _logger.LogError(new AutranSoftEfException(ex, entity));
             }
 
             return entity;
@@ -39,7 +45,7 @@ namespace Autransoft.Template.EntityFramework.Lib.Data
             }
             catch(Exception ex)
             {
-                new AutranSoftEfException(ex, entity);
+                _logger.LogError(new AutranSoftEfException(ex, entity));
             }
         }
 
@@ -52,7 +58,7 @@ namespace Autransoft.Template.EntityFramework.Lib.Data
             }
             catch(Exception ex)
             {
-                new AutranSoftEfException(ex, entity);
+                _logger.LogError(new AutranSoftEfException(ex, entity));
             }
         }
 
@@ -65,8 +71,20 @@ namespace Autransoft.Template.EntityFramework.Lib.Data
             }
             catch(Exception ex)
             {
-                new AutranSoftEfException(ex, entities);
+                _logger.LogError(new AutranSoftEfException(ex, entities));
             }
         }
+
+        //public async Task DeleteTableAsync(string tableName)
+        //{
+        //    try
+        //    {
+        //        await _dbContext.Database.ExecuteSqlInterpolatedAsync($"DELETE FROM {tableName};");
+        //    }
+        //    catch(Exception ex)
+        //    {
+        //        _logger.LogError(new AutranSoftEfException(ex, $"DELETE FROM {tableName};"));
+        //    }
+        //}
     }
 }

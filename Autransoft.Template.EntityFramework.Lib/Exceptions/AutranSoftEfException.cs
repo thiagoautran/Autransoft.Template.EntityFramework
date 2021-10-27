@@ -13,7 +13,7 @@ namespace Autransoft.Template.EntityFramework.Lib.Exceptions
 
         internal bool? UseNewtonsoft { get; private set; }
 
-        public string LogError { get { return this.LogError(); } }
+        public string LogError<Repository>() where Repository : class => this.Error<Repository>();
 
         public AutranSoftEfException ConvertWithNewtonsoft()
         {
